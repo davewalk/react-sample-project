@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 
 const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 class App extends Component {
+  render() {
+    return (
+        <Router>
+          <div className="App">
+          <Route exact={true} path='/' render={() => (
+            <div>
+              <p><Link to='/homes/1'>Home 1</Link></p>
+              <p><Link to='/homes/2'>Home 2</Link></p>
+            </div>
+          )}/>
+          <Route
+            path='/homes/:homeId'
+            render={(props) => <HomeResults {...props} />}
+          />
+          </div>
+        </Router>
+    );
+  }
+}
+
+class HomeResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,20 +36,9 @@ class App extends Component {
     };
   }
 
-  render() {
-    return (
-      <div className="App">
-        <Score score={this.state.score}/>
-        <Message text={this.state.scoreMessage}/>
-        <Statistic stat={this.state.avgDailyUsage} label='Avg Daily Usage'/>
-        <Statistic stat={this.state.avgDailyTemp} label='Avg Daily Temp'/>
-        <LineChart/>
-      </div>
-    );
-  }
-
-  componentDidMount() {
-    fetch(`${REACT_APP_API_ENDPOINT}/api/1/subscriptions/homescore/1/summary`)
+ componentDidMount() {
+   const homeId = this.props.match.params.homeId;
+    fetch(`${REACT_APP_API_ENDPOINT}/api/1/subscriptions/homescore/${homeId}/summary`)
       .then(res => res.json())
       .then(result => {
         this.setState({
@@ -38,6 +49,17 @@ class App extends Component {
         });
       });
   }
+
+ render() {
+   return (
+    <div>
+      <Score score={this.state.score}/>
+      <Message text={this.state.scoreMessage}/>
+      <Statistic stat={this.state.avgDailyUsage} label='Avg Daily Usage'/>
+      <Statistic stat={this.state.avgDailyTemp} label='Avg Daily Temp'/>
+    </div>
+    );
+ }
 }
 
 class Score extends Component {
