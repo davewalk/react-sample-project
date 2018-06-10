@@ -1,23 +1,49 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      score: 'Loading...',
+      avgDailyUsage: 'Loading...',
+      avgDailyTemp: 'Loading...',
+      scoreMessage: ''
+    };
+  }
+
   render() {
     return (
       <div className="App">
-        <Score/>
-        <Message/>
-        <ScoreStatistics/>
+        <Score score={this.state.score}/>
+        <Message text={this.state.scoreMessage}/>
+        <Statistic stat={this.state.avgDailyUsage} label='Avg Daily Usage'/>
+        <Statistic stat={this.state.avgDailyTemp} label='Avg Daily Temp'/>
         <LineChart/>
       </div>
     );
+  }
+
+  componentDidMount() {
+    fetch(`${REACT_APP_API_ENDPOINT}/api/1/subscriptions/homescore/1/summary`)
+      .then(res => res.json())
+      .then(result => {
+        this.setState({
+          score: result.score,
+          scoreMessage: result.score_text,
+          avgDailyTemp: result.average_daily_temp,
+          avgDailyUsage: result.average_daily_energy_usage
+        });
+      });
   }
 }
 
 class Score extends Component {
   render() {
     return (
-      <p>85</p>
+      <p>{this.props.score}</p>
     );
   }
 }
@@ -25,18 +51,7 @@ class Score extends Component {
 class Message extends Component {
   render() {
     return (
-      <p>Your Home Score is an 87 - congrats! The higher the score, the more efficient we measure your home to be against homes like yours.</p>
-    );
-  }
-}
-
-class ScoreStatistics extends Component {
-  render() {
-    return (
-      <div>
-        <Statistic stat='75' label='Avg Daily Usage'/>
-        <Statistic stat='45&#176;' label='Avg Daily Temp'/>
-      </div>
+      <p>{this.props.text}</p>
     );
   }
 }
