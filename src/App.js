@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import { Line as LineChart } from 'react-chartjs';
 import { Typography, Button, Grid, Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles';
+import 'typeface-roboto';
 
 const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
