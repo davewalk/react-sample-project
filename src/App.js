@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import './App.css';
 import { Line as LineChart } from 'react-chartjs';
+import { Typography, Button, Grid, Paper } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles'
 
 const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
@@ -12,8 +14,11 @@ class App extends Component {
           <div className="App">
           <Route exact={true} path='/' render={() => (
             <div>
-              <p><Link to='/homes/1'>Home 1</Link></p>
-              <p><Link to='/homes/2'>Home 2</Link></p>
+            {[1, 2].map(value => (
+              <Button component={Link} to={'/homes/'+value} variant="contained" color="primary">
+                Home {value}
+              </Button>
+            ))}
             </div>
           )}/>
           <Route
@@ -67,7 +72,9 @@ class HomeResults extends Component {
 class Score extends Component {
   render() {
     return (
-      <p>{this.props.score}</p>
+        <Paper>
+        <Typography variant='display3'>{this.props.score}</Typography>
+        </Paper>
     );
   }
 }
