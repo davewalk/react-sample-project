@@ -1,4 +1,4 @@
-import { Typography, Paper } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 import React, { Component } from 'react';
 import Gauge from 'react-svg-gauge';
 
