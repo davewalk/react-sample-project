@@ -1,5 +1,7 @@
 # react-sample-project  
 
+[![Build Status](https://travis-ci.org/davewalk/react-sample-project.svg?branch=master)](https://travis-ci.org/davewalk/react-sample-project)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).  
 
 ### Installation
@@ -17,7 +19,7 @@ I initially developed this app's components in the `App.js`. This is recommended
 3. Components can be made up of multiple files. At the very least I could see the need for styling files if I were to use [css-modules](https://github.com/gajus/react-css-modules)  
 
 ### Deployment
-TBD
+[TravisCI](https://travis-ci.org/davewalk/react-sample-project) is used to deploy automatically on pushes to `master`. If the tests pass, it uploads the build to S3 which is hooked up to CloudFront (because why not). Webpack does cache busting so we're good there.   
 
 ### Future Work
 * Add [Flow](https://flow.org/) for type safety  
