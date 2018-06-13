@@ -1,2 +1,2 @@
 #!/bin/bash
-aws s3 sync build/ s3://$API_ENDPOINT
+aws s3 sync build/ s3://$S3_BUCKET
