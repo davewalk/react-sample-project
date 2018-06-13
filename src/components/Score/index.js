@@ -1,5 +1,4 @@
-import { Paper } from '@material-ui/core';
-import React, { Component } from 'react';
+import React from 'react';
 import Gauge from 'react-svg-gauge';
 
 function getColor(score) {
@@ -8,12 +7,8 @@ function getColor(score) {
   return '#009300';
 }
 
-export default class Score extends Component {
-  render() {
-    return (
-        <Paper>
-          <Gauge value={this.props.score} backgroundColor="#fff" label="" color={getColor(this.props.score)}/>
-        </Paper>
-    );
-  }
+function Score(props) {
+  return <Gauge value={props.score} backgroundColor="#fff" label="" color={getColor(props.score)}/>
 }
+
+export default Score;
