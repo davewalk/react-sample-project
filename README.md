@@ -26,3 +26,5 @@ I initially developed this app's components in the `App.js`. This is recommended
 * Add [Redux](https://redux.js.org) for caching of API calls and better fetching in general  
 * More unit tests!  
 * Break out routes into separate files. Since there's only one non-root route this isn't necessary right now  
+* API error handling  
+* "loading" modal before the API call returns  
