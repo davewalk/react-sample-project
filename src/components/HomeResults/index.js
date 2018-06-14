@@ -39,7 +39,7 @@ export default class HomeResults extends Component {
       <Message text={this.state.scoreMessage}/>
       <Grid container spacing={24}>
         <Grid item xs={12} sm={6}>
-          <Statistic stat={this.state.avgDailyUsage} label='Average Daily Usage'/>
+          <Statistic stat={`${this.state.avgDailyUsage} kWh`} label='Average Daily Usage'/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Statistic stat={`${this.state.avgDailyTemp}°`} label='Average Daily Temp'/>
