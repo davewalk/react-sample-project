@@ -28,3 +28,4 @@ I initially developed this app's components in the `App.js`. This is recommended
 * Break out routes into separate files. Since there's only one non-root route this isn't necessary right now  
 * API error handling  
 * "loading" modal before the API call returns  
+* Fix Router so `/homes/{id}` will load without history  
