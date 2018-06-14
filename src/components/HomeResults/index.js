@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Grid } from '@material-ui/core';
 import Score from '../Score';
 import Message from '../Message';
 import Statistic from '../Statistic';
 import DailyUsageChart from '../DailyUsageChart';
+
 const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 export default class HomeResults extends Component {
@@ -35,10 +37,16 @@ export default class HomeResults extends Component {
     <div>
       <Score score={this.state.score}/>
       <Message text={this.state.scoreMessage}/>
-      <Statistic stat={this.state.avgDailyUsage} label='Avg Daily Usage'/>
-      <Statistic stat={this.state.avgDailyTemp} label='Avg Daily Temp'/>
+      <Grid container spacing={24}>
+        <Grid item xs={12} sm={6}>
+          <Statistic stat={this.state.avgDailyUsage} label='Average Daily Usage'/>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Statistic stat={`${this.state.avgDailyTemp}°`} label='Average Daily Temp'/>
+        </Grid>
+      </Grid>
       <DailyUsageChart homeId={this.props.match.params.homeId}/>
     </div>
-    );
+  );
  }
 }

@@ -14,7 +14,7 @@ const styles = {
 function Message(props) {
   const { classes } = props;
 
-  return <Typography className={classes.root} align={'center'} variant={'display3'}>{props.text}</Typography>
+  return <Typography color={'primary'} className={classes.root} align={'center'} variant={'display2'}>{props.text}</Typography>
 }
 
 export default withStyles(styles)(Message);

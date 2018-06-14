@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Line as LineChart } from 'react-chartjs';
 import { Card, CardContent, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+
 const REACT_APP_API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT;
 
 const styles = {
@@ -25,20 +26,18 @@ export default withStyles(styles)(
 
     newDefaultState() {
       return {
-            labels: [],
-            datasets: [
-            {
-              label: "Daily Energy Usage",
-              fillColor: "rgba(220,220,220,0.2)",
-              strokeColor: "rgba(220,220,220,1)",
-              pointColor: "rgba(220,220,220,1)",
-              pointStrokeColor: "#fff",
-              pointHighlightFill: "#fff",
-              pointHighlightStroke: "rgba(220,220,220,1)",
-              data: []
-            }
-            ]
-          };
+        labels: [],
+        datasets: [
+          {
+            label: "Daily Energy Usage",
+            fillColor: "#fff",
+            strokeColor: "#e6168b",
+            borderWidth: 10,
+            pointColor: "#e6168b",
+            data: []
+          }
+        ]
+      };
     }
 
    componentWillMount() {
@@ -64,7 +63,7 @@ export default withStyles(styles)(
         <Card className={classes.root}>
           <CardContent>
             <Typography color="textSecondary">
-              Usage by Day (December)
+              Usage by Day (in December)
             </Typography>
             <LineChart data={this.state} options={this.options} width="900px"/>
           </CardContent>
